@@ -34,13 +34,6 @@
             border: none !important;
         }
         
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-            font-size: 28px;
-        }
-        
         /* 検索ボックス */
         .search-box {
             margin-bottom: 20px;
@@ -98,9 +91,9 @@
         }
         
         .filter-btn.active {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #63c405 0%, #7ecf31 100%);
             color: white;
-            border-color: #4CAF50;
+            border-color: #63c405;
         }
         
         /* ソート */
@@ -340,6 +333,26 @@
             box-shadow: 0 4px 15px rgba(118, 248, 248, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
+        .type-icon {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 32px;
+            height: 32px;
+            z-index: 6;
+            pointer-events: none;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0.8), 0 0 4px 1px rgba(255, 255, 255, 0.6);
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.9));
+        }
+        
+        .type-icon img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        
         .card-overlay {
             position: absolute;
             top: 0;
@@ -355,6 +368,7 @@
             flex-direction: column;
             padding: 20px;
             text-align: center;
+            background-color: rgba(59, 191, 255, 0.6);
         }
         
         .overlay-content {
@@ -396,8 +410,6 @@
 </head>
 <body>
     <div class="container">
-        <h1>ウマ娘 サポートカード図鑑</h1>
-        
         <!-- 検索ボックス -->
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="【検索】キャラ名、サブ名、金スキル、白スキル、固有で検索...">
@@ -956,7 +968,7 @@
     "種類id": "106",
     "種類": "賢さ",
     "固有": "やる気効果アップとレースボーナス",
-    "評価": 123,
+    "評価": 129,
     "Tier": 10,
     "金スキルid": null,
     "金スキル": null,
@@ -1109,8 +1121,8 @@
     "種類id": "101",
     "種類": "スピード",
     "固有": "トレーニング効果アップとヒント発生率アップ",
-    "評価": 102,
-    "Tier": 13,
+    "評価": 111,
+    "Tier": 12,
     "金スキルid": null,
     "金スキル": null,
     "白スキルid": "200032,200362,200372,200382,200512,200602,200702,201032,201102",
@@ -1228,7 +1240,7 @@
     "種類id": "106",
     "種類": "賢さ",
     "固有": "トレーニング効果アップと初期賢さアップ",
-    "評価": 99,
+    "評価": 102,
     "Tier": 12,
     "金スキルid": null,
     "金スキル": null,
@@ -2622,7 +2634,7 @@
     "種類id": "102",
     "種類": "パワー",
     "固有": "スタミナボーナスとトレーニング効果アップ",
-    "評価": 125,
+    "評価": 135,
     "Tier": 10,
     "金スキルid": "200351",
     "金スキル": "円弧のマエストロ",
@@ -2894,8 +2906,8 @@
     "種類id": "106",
     "種類": "賢さ",
     "固有": "賢さボーナスとレースボーナス",
-    "評価": 127,
-    "Tier": 10,
+    "評価": 137,
+    "Tier": 9,
     "金スキルid": "200601",
     "金スキル": "乗り換え上手",
     "白スキルid": "200122,200342,200442,200502,200911,201162,201422,201442",
@@ -2962,8 +2974,8 @@
     "種類id": "102",
     "種類": "パワー",
     "固有": "パワーボーナスと初期パワーアップ",
-    "評価": 65,
-    "Tier": 15,
+    "評価": 79,
+    "Tier": 14,
     "金スキルid": "200761",
     "金スキル": "火事場のバ鹿力",
     "白スキルid": "200452,200492,200502,201132,201142,201332",
@@ -2979,8 +2991,8 @@
     "種類id": "105",
     "種類": "スタミナ",
     "固有": "スタミナボーナスとヒント発生率アップ",
-    "評価": 62,
-    "Tier": 15,
+    "評価": 76,
+    "Tier": 13,
     "金スキルid": "200551/200552",
     "金スキル": "逃亡者/押し切り準備",
     "白スキルid": "200242,200532,201242,201252",
@@ -3149,8 +3161,8 @@
     "種類id": "105",
     "種類": "スタミナ",
     "固有": "トレーニング効果アップと得意率アップ",
-    "評価": 145,
-    "Tier": 8,
+    "評価": 155,
+    "Tier": 7,
     "金スキルid": "200361",
     "金スキル": "ハヤテ一文字",
     "白スキルid": "200012,200572,200612,200752,201102,201112,201172,201352",
@@ -3285,8 +3297,8 @@
     "種類id": "102",
     "種類": "パワー",
     "固有": "トレーニング効果アップとヒント発生率アップ",
-    "評価": 135,
-    "Tier": 10,
+    "評価": 145,
+    "Tier": 9,
     "金スキルid": "202021",
     "金スキル": "強攻策",
     "白スキルid": "200632,201152,201452,201492,201502",
@@ -3370,8 +3382,8 @@
     "種類id": "106",
     "種類": "賢さ",
     "固有": "絆ゲージが100以上の時、\\n賢さボーナス",
-    "評価": 112,
-    "Tier": 11,
+    "評価": 122,
+    "Tier": 10,
     "金スキルid": "201341",
     "金スキル": "決意の直滑降",
     "白スキルid": "200052,200132,200152,200702,201322",
@@ -3421,8 +3433,8 @@
     "種類id": "102",
     "種類": "パワー",
     "固有": "編成しているサポートカードのタイプが5種類以上ならトレーニング効果アップ",
-    "評価": 126,
-    "Tier": 10,
+    "評価": 139,
+    "Tier": 9,
     "金スキルid": "201681/201591",
     "金スキル": "狙うは最前列！/ウマ好み",
     "白スキルid": "200022,201032,201382,201591,201682,201702",
@@ -3472,8 +3484,8 @@
     "種類id": "106",
     "種類": "賢さ",
     "固有": "編成しているサポートカードのタイプが4種類以上ならトレーニング効果アップ",
-    "評価": 107,
-    "Tier": 12,
+    "評価": 117,
+    "Tier": 11,
     "金スキルid": "201691/201692",
     "金スキル": "潜伏態勢/静かな呼吸",
     "白スキルid": "200592,201212,201382,201392,201542,201692",
@@ -3540,7 +3552,7 @@
     "種類id": "101",
     "種類": "スピード",
     "固有": "絆ゲージが80以上の時、\\nスピードボーナス",
-    "評価": 95,
+    "評価": 105,
     "Tier": 13,
     "金スキルid": "201491",
     "金スキル": "冷静沈着",
@@ -6415,8 +6427,8 @@
     "固有": "絆ゲージが80以上の時、\\nスタミナボーナスと根性ボーナス",
     "評価": 234,
     "Tier": 1,
-    "金スキルid": "202901/203751",
-    "金スキル": "飛翔脚/残影",
+    "金スキルid": "202901|203751",
+    "金スキル": "飛翔脚|残影",
     "白スキルid": "200642,201452,201462,201651,202382,202892,203152,203512,203752,203762",
     "白スキル": "直線一気,追込直線○,追込コーナー○,スリップストリーム,打開策,不動の心,むきだしの情熱,覇気十分,影を追って,追駆",
     "配布": null
@@ -6871,8 +6883,11 @@
             rarity: new Set(),
             distribution: new Set(),
             group: new Set(),
-            search: ''
+            search: '',
+            sort: 'rating-desc'
         };
+
+        const STATE_STORAGE_KEY = 'uma_support_filter_state_v1';
         
         // 種類別の短縮キー
         const typeToClass = {
@@ -6885,11 +6900,24 @@
             'グループ': 'group'
         };
         
+        // 種類別アイコンURL
+        const typeToIcon = {
+            'スピード': 'https://playershi.com/wp-content/uploads/uma_speed_001.webp',
+            'パワー': 'https://playershi.com/wp-content/uploads/uma_power_001.webp',
+            'スタミナ': 'https://playershi.com/wp-content/uploads/uma_stamina_001.webp',
+            '根性': 'https://playershi.com/wp-content/uploads/uma_konjou_001.webp',
+            '賢さ': 'https://playershi.com/wp-content/uploads/uma_kashikosa_001.webp',
+            'グループ': 'https://playershi.com/wp-content/uploads/uma_groupe_001.webp',
+            '友人': 'https://playershi.com/wp-content/uploads/uma_friend_001.webp'
+        };
+        
         // 初期化
         function init() {
             attachFilterListeners();
             attachSortListeners();
             attachSearchListener();
+            loadState();
+            applyStateToUI();
             renderCards();
             setupLazyLoading();
             setupHoverEffect();
@@ -6913,6 +6941,7 @@
                         this.classList.add('active');
                     }
                     
+                    saveState();
                     renderCards();
                 });
             });
@@ -6924,6 +6953,8 @@
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
+                    filterState.sort = this.dataset.sort;
+                    saveState();
                     renderCards();
                 });
             });
@@ -6933,7 +6964,65 @@
         function attachSearchListener() {
             document.getElementById('searchInput').addEventListener('input', function() {
                 filterState.search = this.value.toLowerCase();
+                saveState();
                 renderCards();
+            });
+        }
+
+        function saveState() {
+            const state = {
+                type: Array.from(filterState.type),
+                rarity: Array.from(filterState.rarity),
+                distribution: Array.from(filterState.distribution),
+                group: Array.from(filterState.group),
+                search: filterState.search || '',
+                sort: filterState.sort || 'rating-desc'
+            };
+            try {
+                localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {
+                // ローカルストレージが使えない場合は無視
+            }
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STATE_STORAGE_KEY);
+                if (!raw) return;
+                const state = JSON.parse(raw);
+                filterState.type = new Set(state.type || []);
+                filterState.rarity = new Set(state.rarity || []);
+                filterState.distribution = new Set(state.distribution || []);
+                filterState.group = new Set(state.group || []);
+                filterState.search = (state.search || '').toLowerCase();
+                filterState.sort = state.sort || 'rating-desc';
+            } catch (e) {
+                // パース失敗時は初期状態のまま
+            }
+        }
+
+        function applyStateToUI() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const filterType = btn.dataset.filter;
+                const value = btn.dataset.value;
+                if (filterState[filterType] && filterState[filterType].has(value)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = filterState.search || '';
+            }
+
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                if (btn.dataset.sort === filterState.sort) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
             });
         }
         
@@ -6981,8 +7070,7 @@
             });
             
             // ソート
-            const activeSortBtn = document.querySelector('.sort-btn.active');
-            const sortType = activeSortBtn ? activeSortBtn.dataset.sort : 'rating-desc';
+            const sortType = filterState.sort || 'rating-desc';
             
             if (sortType === 'rating-asc') {
                 filtered.sort((a, b) => (a['評価'] || 0) - (b['評価'] || 0));
@@ -7028,13 +7116,22 @@
                         }
                     }
                     
-                    return '<div class="card ' + typeClass + '"><div class="card-image"><img src="' + imagePath + '" alt="' + (card['キャラ名'] || '') + '" loading="lazy">' + tierBadgeHtml + '<div class="card-rating-overlay">評価: ' + rating + percentText + '</div><div class="card-overlay"><div class="overlay-content"><div class="overlay-title">' + (card['キャラ名'] || '') + '</div><div class="overlay-subtitle">' + (card['サブ名'] || '') + '</div></div></div></div></div>';
+                    // 種類アイコン
+                    const typeIconUrl = typeToIcon[type] || '';
+                    let typeIconHtml = '';
+                    if (typeIconUrl) {
+                        typeIconHtml = '<div class="type-icon"><img src="' + typeIconUrl + '" alt="' + type + '"></div>';
+                    }
+                    
+                    const pageLink = '';
+                    return '<div class="card ' + typeClass + '" data-link="' + pageLink + '"><div class="card-image"><img src="' + imagePath + '" alt="' + (card['キャラ名'] || '') + '" loading="lazy">' + typeIconHtml + tierBadgeHtml + '<div class="card-rating-overlay">評価: ' + rating + percentText + '</div><div class="card-overlay"><div class="overlay-content"><div class="overlay-title">' + (card['キャラ名'] || '') + '</div><div class="overlay-subtitle">' + (card['サブ名'] || '') + '</div></div></div></div></div>';
                 }).join('');
             }
             
             // ホバーイベントを設定
             setupLazyLoading();
             setupHoverEffect();
+            setupCardClickHandler();
         }
         
         // 遅延読み込み設定
@@ -7078,13 +7175,27 @@
                         'group': 'rgba(83, 211, 9, 0.6)'
                     };
                     
+                    // 初期背景色を設定
+                    overlay.style.backgroundColor = colors[type];
+                    
                     card.addEventListener('mouseenter', function() {
-                        overlay.style.backgroundColor = colors[type];
                         overlay.style.opacity = '1';
                     });
                     
                     card.addEventListener('mouseleave', function() {
                         overlay.style.opacity = '0';
+                    });
+                }
+            });
+        }
+        
+        function setupCardClickHandler() {
+            document.querySelectorAll('.card').forEach(card => {
+                const link = card.getAttribute('data-link');
+                if (link) {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', function() {
+                        window.location.href = link;
                     });
                 }
             });
