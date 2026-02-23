@@ -648,6 +648,13 @@
                 <button class="sort-btn active" data-sort="rating-desc">評価 高→低</button>
                 <button class="sort-btn" data-sort="rating-asc">評価 低→高</button>
             </div>
+
+            <!-- 評価モード切替 -->
+            <div class="filter-group">
+                <label>評価:</label>
+                <button id="evalModeBtnKantotsu" class="filter-btn eval-mode-btn active" data-mode="kantotsu">完凸</button>
+                <button id="evalModeBtnMutotsu" class="filter-btn eval-mode-btn" data-mode="mutotsu">無凸</button>
+            </div>
         </div>
         
         <!-- カード グリッド -->
@@ -672,7 +679,8 @@
             group: new Set(),
             goldTag: new Set(),
             search: '',
-            sort: 'rating-desc'
+            sort: 'rating-desc',
+            evalMode: 'kantotsu' // 追加: 評価モード（kantotsu / mutotsu）
         };
 
         const STATE_STORAGE_KEY = 'uma_support_filter_state_v1';
@@ -706,6 +714,7 @@
             attachFilterListeners();
             attachSortListeners();
             attachSearchListener();
+            attachEvalModeListeners(); // 追加: 評価モードボタンのリスナー
             loadState();
             applyStateToUI();
             renderCards();
@@ -787,6 +796,30 @@
                 });
             });
         }
+
+        // 追加: 評価モード切替ボタンのリスナー
+        function attachEvalModeListeners() {
+            const kantotsuBtn = document.getElementById('evalModeBtnKantotsu');
+            const mutotsuBtn = document.getElementById('evalModeBtnMutotsu');
+            
+            kantotsuBtn.addEventListener('click', function() {
+                if (filterState.evalMode === 'kantotsu') return;
+                filterState.evalMode = 'kantotsu';
+                this.classList.add('active');
+                mutotsuBtn.classList.remove('active');
+                saveState();
+                renderCards();
+            });
+            
+            mutotsuBtn.addEventListener('click', function() {
+                if (filterState.evalMode === 'mutotsu') return;
+                filterState.evalMode = 'mutotsu';
+                this.classList.add('active');
+                kantotsuBtn.classList.remove('active');
+                saveState();
+                renderCards();
+            });
+        }
         
         // ソートボタン リスナー
         function attachSortListeners() {
@@ -823,7 +856,8 @@
                 group: Array.from(filterState.group),
                 goldTag: Array.from(filterState.goldTag),
                 search: filterState.search || '',
-                sort: filterState.sort || 'rating-desc'
+                sort: filterState.sort || 'rating-desc',
+                evalMode: filterState.evalMode || 'kantotsu' // 追加
             };
             try {
                 localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(state));
@@ -844,6 +878,7 @@
                 filterState.goldTag = new Set(state.goldTag || []);
                 filterState.search = (state.search || '').toLowerCase();
                 filterState.sort = state.sort || 'rating-desc';
+                filterState.evalMode = state.evalMode || 'kantotsu'; // 追加
             } catch (e) {
                 // パース失敗時は初期状態のまま
             }
@@ -872,10 +907,24 @@
                     btn.classList.remove('active');
                 }
             });
+
+            // 評価モードボタンのアクティブ状態を反映
+            const kantotsuBtn = document.getElementById('evalModeBtnKantotsu');
+            const mutotsuBtn = document.getElementById('evalModeBtnMutotsu');
+            if (filterState.evalMode === 'kantotsu') {
+                kantotsuBtn.classList.add('active');
+                mutotsuBtn.classList.remove('active');
+            } else {
+                mutotsuBtn.classList.add('active');
+                kantotsuBtn.classList.remove('active');
+            }
         }
         
         // カード レンダリング
         function renderCards() {
+            // 現在の評価モードに応じたキーを決定
+            const evalKey = filterState.evalMode === 'mutotsu' ? 'mutotsu_score' : '評価';
+            
             let filtered = cardsData.filter(card => {
                 // 種類フィルター
                 if (filterState.type.size > 0 && !filterState.type.has(card['種類'])) {
@@ -922,6 +971,12 @@
                         return false;
                     }
                 }
+
+                // 無凸モード時、mutotsu_score が 0 のカードは非表示
+                if (filterState.evalMode === 'mutotsu') {
+                    const score = card['mutotsu_score'] || 0;
+                    if (score === 0) return false;
+                }
                 
                 return true;
             });
@@ -930,9 +985,9 @@
             const sortType = filterState.sort || 'rating-desc';
             
             if (sortType === 'rating-asc') {
-                filtered.sort((a, b) => (a['評価'] || 0) - (b['評価'] || 0));
+                filtered.sort((a, b) => (a[evalKey] || 0) - (b[evalKey] || 0));
             } else {
-                filtered.sort((a, b) => (b['評価'] || 0) - (a['評価'] || 0));
+                filtered.sort((a, b) => (b[evalKey] || 0) - (a[evalKey] || 0));
             }
             
             // レンダリング
@@ -948,8 +1003,8 @@
             grid.style.display = 'grid';
             noResults.style.display = 'none';
             
-            // 最大評価値を取得
-            const maxRating = Math.max(...filtered.map(c => c['評価'] || 0));
+            // 最大評価値を取得（現在の evalKey で）
+            const maxRating = Math.max(...filtered.map(c => c[evalKey] || 0));
             
             // フラグメントを使って一度にDOM挿入
             const fragment = document.createDocumentFragment();
@@ -958,7 +1013,7 @@
                 const id = String(card['id']).padStart(5, '0');
                 const type = card['種類'] || '不明';
                 const typeClass = typeToClass[type] || '';
-                const rating = card['評価'] || 0;
+                const rating = card[evalKey] || 0;
                 const tier = card['Tier'];
                 const imagePath = 'https://playershi.com/wp-content/uploads/' + id + '_card.webp';
                 
