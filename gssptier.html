@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>幻想水滸伝 STAR LEAP Tier表</title>
+<style>:root{--color_main:#03201b;--color_main_thin:rgba(4,40,34,.05);--color_text:#000;--color_border:rgba(199,199,199,.5)}body{margin:0;padding:24px;background:#f9f9f9;color:#000}
+.sst-root {
+    --sst-bg: #0e1521;
+    --sst-panel: #162235;
+    --sst-panel-2: #1d2c43;
+    --sst-line: rgba(218, 190, 119, .34);
+    --sst-gold: #e6c46f;
+    --sst-ink: #f6f1e5;
+    --sst-muted: #b6c1d0;
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    color: var(--sst-ink);
+    font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.6;
+}
+.sst-root *, .sst-root *::before, .sst-root *::after { box-sizing: border-box; }
+.sst-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--sst-line);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 100% 0, rgba(51, 102, 145, .28), transparent 34%),
+        radial-gradient(circle at 0 28%, rgba(142, 47, 47, .18), transparent 28%),
+        linear-gradient(145deg, #101a29, #0a101a 68%);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, .3);
+}
+.sst-hero {
+    position: relative;
+    padding: 30px 30px 23px;
+    border-bottom: 1px solid var(--sst-line);
+}
+.sst-hero::after {
+    content: "";
+    position: absolute;
+    right: 28px;
+    bottom: -1px;
+    width: min(34%, 320px);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--sst-gold));
+}
+.sst-kicker {
+    margin: 0 0 5px;
+    color: var(--sst-gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+.sst-title {
+    margin: 0;
+    color: #fff;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: clamp(25px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: .04em;
+    line-height: 1.25;
+}
+.sst-lead {
+    max-width: 760px;
+    margin: 9px 0 0;
+    color: var(--sst-muted);
+    font-size: 13px;
+}
+.sst-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: rgba(4, 9, 15, .48);
+}
+.sst-attribute-filters { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.sst-rarity-filters { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.sst-rarity-filter {
+    width: 50px;
+    min-width: 50px;
+    height: 40px;
+    padding: 0 4px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px;
+    background: rgba(255,255,255,.045);
+    color: inherit;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 800;
+    transition: border-color .16s ease, background .16s ease, color .16s ease, transform .16s ease;
+}
+.sst-rarity-filter:hover, .sst-rarity-filter:focus-visible { border-color: var(--sst-gold); transform: translateY(-2px); outline: none; }
+.sst-rarity-filter.is-active { border-color: var(--sst-gold); background: var(--sst-gold); color: #fff; }
+.sst-attr-filter {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 8px;
+    background: rgba(255,255,255,.045);
+    cursor: pointer;
+    opacity: .72;
+    transition: border-color .16s ease, background .16s ease, opacity .16s ease, transform .16s ease;
+}
+.sst-attr-filter:hover, .sst-attr-filter:focus-visible { border-color: var(--sst-gold); opacity: 1; transform: translateY(-2px); outline: none; }
+.sst-attr-filter.is-active { border-color: #ffe29a; background: rgba(230,196,111,.18); opacity: 1; box-shadow: 0 0 0 2px rgba(230,196,111,.13); }
+.sst-attr-filter img { width: 30px; height: 30px; object-fit: contain; }
+.sst-search {
+    width: min(420px, 100%);
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid rgba(230,196,111,.42);
+    border-radius: 8px;
+    outline: 0;
+    background: #0b1320;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+}
+.sst-search:focus { border-color: var(--sst-gold); box-shadow: 0 0 0 3px rgba(230,196,111,.13); }
+.sst-count { margin-left: auto; color: var(--sst-muted); font-size: 12px; white-space: nowrap; }
+.sst-column-heads {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    margin: 18px 18px 0;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 9px;
+    background: rgba(21,32,49,.88);
+    overflow: hidden;
+}
+.sst-column-tier { display: grid; place-items: center; border-right: 1px solid rgba(255,255,255,.08); color: #8994a7; font-size: 12px; font-weight: 900; }
+.sst-column-groups { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.sst-column-head { display: flex; gap: 8px; align-items: center; justify-content: center; padding: 9px; border-right: 1px solid rgba(255,255,255,.07); font-size: 13px; font-weight: 900; }
+.sst-column-head:last-child { border-right: 0; }
+.sst-column-head::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 9px currentColor; }
+.sst-column-head[data-category="アタッカー"] { color: #ff7f76; }
+.sst-column-head[data-category="バッファー"] { color: #65d7b1; }
+.sst-column-head[data-category="サスティナー"] { color: #72b5f1; }
+.sst-board { padding: 10px 18px 18px; }
+.sst-ssr-fallback { padding: 8px 0; }
+.sst-ssr-fallback h2 { margin: 0 0 10px; color: var(--sst-gold); font-size: 18px; }
+.sst-ssr-fallback ul { columns: 3 240px; margin: 0; padding-left: 1.4em; }
+.sst-ssr-fallback li { margin-bottom: 5px; break-inside: avoid; color: #dce5ef; font-size: 13px; }
+.sst-tier-row {
+    --tier-color: #8994a7;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    margin-bottom: 14px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-left: 4px solid var(--tier-color);
+    border-radius: 10px;
+    background: rgba(21, 32, 49, .88);
+    box-shadow: inset 0 1px rgba(255,255,255,.025);
+}
+.sst-tier-row[data-tier="S"] { --tier-color: #f5c451; }
+.sst-tier-row[data-tier="A"] { --tier-color: #ed6974; }
+.sst-tier-row[data-tier="B"] { --tier-color: #b485e8; }
+.sst-tier-row[data-tier="C"] { --tier-color: #63a8e5; }
+.sst-tier-row[data-tier="D"] { --tier-color: #65b98a; }
+.sst-tier-row[data-tier="E"] { --tier-color: #8894a5; }
+.sst-tier-mark {
+    display: grid;
+    place-items: center;
+    min-height: 138px;
+    border-right: 1px solid rgba(255,255,255,.1);
+    background: linear-gradient(150deg, color-mix(in srgb, var(--tier-color) 20%, transparent), transparent 65%);
+    color: var(--tier-color);
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: 900;
+    text-shadow: 0 2px 18px color-mix(in srgb, var(--tier-color) 45%, transparent);
+}
+.sst-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-width: 0; }
+.sst-group { min-width: 0; padding: 10px; border-right: 1px solid rgba(255,255,255,.07); }
+.sst-group:last-child { border-right: 0; }
+.sst-group-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 9px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: rgba(255,255,255,.045);
+    color: #dce5ef;
+    font-size: 12px;
+    font-weight: 800;
+}
+.sst-group-title::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 9px currentColor; }
+.sst-group[data-category="アタッカー"] .sst-group-title { color: #ff7f76; }
+.sst-group[data-category="バッファー"] .sst-group-title { color: #65d7b1; }
+.sst-group[data-category="サスティナー"] .sst-group-title { color: #72b5f1; }
+.sst-tier-echo { display: none; color: var(--tier-color); font-family: Georgia, serif; font-size: 18px; }
+.sst-icon-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; align-items: flex-start; }
+.sst-empty { display: grid; flex: 1 1 100%; place-items: center; min-height: 72px; color: rgba(255,255,255,.26); font-size: 12px; }
+.sst-card {
+    position: relative;
+    flex: 0 1 104px;
+    width: 104px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    isolation: isolate;
+    transition: transform .18s ease, filter .18s ease;
+}
+.sst-card:hover, .sst-card:focus-visible { z-index: 20; transform: translateY(-7px); filter: brightness(1.08); outline: none; }
+.sst-thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(230,196,111,.58);
+    border-radius: 9px;
+    background: #090e16;
+    box-shadow: 0 5px 12px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.12);
+    transition: box-shadow .18s ease, border-color .18s ease;
+}
+.sst-card:hover .sst-thumb, .sst-card:focus-visible .sst-thumb { border-color: #ffe39a; box-shadow: 0 13px 22px rgba(0,0,0,.46), 0 0 16px rgba(230,196,111,.26); }
+.sst-thumb > .sst-face-image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.sst-card:hover .sst-face-image, .sst-card:focus-visible .sst-face-image { transform: scale(1.055); }
+.sst-card-attributes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    border-radius: 7px 0 4px 0;
+    background: rgba(5,10,17,.86);
+    box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+}
+.sst-card-attribute {
+    display: block;
+    width: clamp(14px, 1.55vw, 18px);
+    height: clamp(14px, 1.55vw, 18px);
+    padding: 1px;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    border-radius: 0;
+    background: transparent;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.7));
+}
+.sst-card-attribute:last-child { border-bottom: 0; }
+.sst-card-speed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    min-width: 22px;
+    height: 19px;
+    padding: 0 4px;
+    border-radius: 0 7px 0 5px;
+    background: rgba(3, 32, 27, .9);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: -1px 1px 4px rgba(0,0,0,.28);
+}
+.sst-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    z-index: 30;
+    width: max-content;
+    max-width: 210px;
+    padding: 8px 10px;
+    border: 1px solid rgba(230,196,111,.62);
+    border-radius: 7px;
+    background: rgba(6,12,20,.96);
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    text-align: left;
+    transform: translate(-50%, 5px);
+    transition: opacity .16s ease, transform .16s ease;
+    box-shadow: 0 10px 28px rgba(0,0,0,.48);
+}
+.sst-tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; border: 6px solid transparent; border-top-color: rgba(230,196,111,.62); transform: translateX(-50%); }
+.sst-card:hover .sst-tooltip, .sst-card:focus-visible .sst-tooltip { opacity: 1; transform: translate(-50%, 0); }
+.sst-tooltip b { display: block; font-size: 13px; }
+.sst-tooltip small { display: block; margin-top: 2px; color: #c6d1df; font-size: 10px; line-height: 1.4; }
+.sst-tooltip-attributes { display: flex; gap: 3px; align-items: center; margin-top: 4px; }
+.sst-tooltip-attributes img { width: 22px; height: 22px; object-fit: contain; }
+.sst-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(3, 7, 12, .82);
+    backdrop-filter: blur(5px);
+}
+.sst-modal.is-open { display: flex; }
+.sst-dialog {
+    position: relative;
+    width: min(1040px, 100%);
+    max-height: 90vh;
+    overflow: auto;
+    border: 1px solid rgba(230,196,111,.55);
+    border-radius: 14px;
+    background: linear-gradient(145deg, #18263a, #0c1420 72%);
+    color: #f7f4eb;
+    box-shadow: 0 28px 90px rgba(0,0,0,.65);
+}
+.sst-close {
+    position: sticky;
+    top: 9px;
+    z-index: 5;
+    float: right;
+    width: 38px;
+    height: 38px;
+    margin: 9px 9px -47px 0;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: #101b2a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 23px;
+}
+.sst-detail { padding: 28px; font-size: 15px; }
+.sst-detail-head { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; align-items: center; margin-bottom: 22px; }
+.sst-detail-image { width: 150px; height: 150px; border: 2px solid var(--sst-gold); border-radius: 12px; object-fit: cover; }
+.sst-detail-name { margin: 0 0 12px; padding-right: 38px; font-family: "Yu Mincho", serif; font-size: 34px; line-height: 1.25; }
+.sst-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sst-chip { padding: 5px 10px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: rgba(255,255,255,.06); color: #dce5ef; font-size: 13px; }
+.sst-chip-tier { border-color: var(--sst-gold); color: #ffe296; font-weight: 900; }
+.sst-chip-rarity { font-weight: 900; }
+.sst-chip-rarity[data-rarity="SR"] { border-color: #71889a; color: #9cc4df; }
+.sst-chip-rarity[data-rarity="配布"] { border-color: #b4872e; color: #ffd884; }
+.sst-attack-chip { display: inline-flex; gap: 5px; align-items: center; }
+.sst-attribute-list { display: inline-flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.sst-inline-attribute { display: inline-block; width: 24px; height: 24px; object-fit: contain; vertical-align: -.35em; }
+.sst-attack-chip .sst-inline-attribute { width: 25px; height: 25px; }
+.sst-affinities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+.sst-affinities span { padding: 7px 11px; border: 1px solid rgba(255,255,255,.13); border-radius: 7px; background: rgba(7,13,22,.46); color: #eef3f8; font-size: 14px; }
+.sst-affinities b { margin-right: 8px; color: var(--sst-gold); font-size: 12px; letter-spacing: .05em; }
+.sst-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(72px, 1fr)); gap: 6px; margin: 12px 0; }
+.sst-stat { padding: 10px 5px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; background: rgba(255,255,255,.045); text-align: center; }
+.sst-stat b { display: block; color: #99abc0; font-size: 12px; }
+.sst-stat span { font-size: 19px; font-weight: 800; }
+.sst-detail-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.sst-box { min-width: 0; margin: 0; border: 1px solid rgba(255,255,255,.11); border-radius: 10px; background: rgba(255,255,255,.035); }
+.sst-box-title { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,.1); color: var(--sst-gold); font-size: 17px; font-weight: 900; }
+.sst-box-body { padding: 14px; color: #e2e8f0; font-size: 15px; overflow-wrap: anywhere; }
+.sst-skill-line + .sst-skill-line { margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.14); }
+.sst-skill-name { margin-bottom: 5px; color: #fff; font-size: 16px; font-weight: 900; }
+.sst-skill-label { margin-left: 9px; padding: 2px 7px; border-radius: 999px; background: rgba(98,169,230,.15); color: #9cc8ed; font-size: 11px; }
+.sst-skill-note { margin-top: 6px; color: #ffd66f; font-size: 13px; font-weight: 800; }
+.sst-rich { color: #e3e9f1; font-size: 15px; line-height: 1.85; }
+.sst-rich .sst-em { color: #ffd45c; font-weight: 900; text-shadow: 0 0 10px rgba(255,212,92,.12); }
+.sst-feature h4 { margin: 0 0 9px; color: #fff; font-size: 18px; }
+.sst-effect-base { display: grid; grid-template-columns: 72px minmax(0,1fr); gap: 11px; align-items: start; }
+.sst-effect-base > span, .sst-change-row > span { padding: 4px 7px; border-radius: 5px; background: #273b56; color: #bcd4e9; text-align: center; font-size: 12px; font-weight: 900; }
+.sst-change-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 11px; padding-top: 11px; border-top: 1px dashed rgba(255,255,255,.14); }
+.sst-change-row b { padding: 6px 9px; border-radius: 6px; background: rgba(255,255,255,.055); color: #cbd5df; font-size: 14px; }
+.sst-change-row i { margin: 0 7px; color: #8ba0b5; font-style: normal; }
+.sst-change-row strong { color: #ffd45c; }
+.sst-art-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.sst-art { position: relative; padding: 14px; border-left: 4px solid #4e87b7; border-radius: 7px; background: rgba(7,13,22,.52); }
+.sst-art-kind { position: absolute; top: 12px; right: 12px; padding: 3px 8px; border-radius: 999px; background: rgba(78,135,183,.18); color: #9cc8ed; font-size: 11px; font-weight: 900; }
+.sst-art-heading { display: flex; flex-wrap: wrap; gap: 8px 13px; align-items: baseline; padding-right: 72px; }
+.sst-art-heading h4 { margin: 0; color: #fff; font-size: 18px; }
+.sst-art-heading p { margin: 0; }
+.sst-art-info { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 10px; }
+.sst-art-info > * { padding: 3px 8px; border-radius: 5px; background: rgba(255,255,255,.06); color: #c6d7e7; font-size: 12px; }
+.sst-art-info b { color: #ffd45c; }
+.sst-art-levels { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+.sst-art-level { display: grid; grid-template-columns: 45px minmax(0,1fr); gap: 7px; align-items: center; min-height: 52px; padding: 9px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; background: rgba(255,255,255,.04); color: #e3eaf2; font-size: 14px; }
+.sst-art-level b { color: #ffd45c; font-size: 12px; }
+@media (max-width: 760px) {
+    .sst-hero { padding: 22px 18px 18px; }
+    .sst-tools { align-items: stretch; flex-direction: column; }
+    .sst-search { width: 100%; }
+    .sst-attribute-filters { justify-content: center; }
+    .sst-rarity-filters { justify-content: center; }
+    .sst-count { margin-left: 0; }
+    .sst-column-heads { display: none; }
+    .sst-board { padding: 10px; }
+    .sst-tier-row { grid-template-columns: 1fr; border-left-width: 3px; }
+    .sst-tier-mark { min-height: 48px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 28px; }
+    .sst-groups { grid-template-columns: 1fr; }
+    .sst-group { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .sst-group:last-child { border-bottom: 0; }
+    .sst-tier-echo { display: inline; }
+    .sst-tooltip { display: none; }
+    .sst-detail { padding: 14px; font-size: 14px; }
+    .sst-detail-head { grid-template-columns: 96px minmax(0,1fr); gap: 12px; align-items: start; }
+    .sst-detail-image { width: 96px; height: 96px; }
+    .sst-detail-name { font-size: 25px; }
+    .sst-affinities { grid-column: 1 / -1; }
+    .sst-stats { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .sst-detail-grid, .sst-art-grid, .sst-art-levels { grid-template-columns: 1fr; }
+    .sst-effect-base { grid-template-columns: 55px minmax(0,1fr); }
+    .sst-art-heading { display: block; padding-right: 64px; }
+    .sst-art-heading p { margin-top: 4px; }
+}
+@media (min-width: 761px) {
+    .sst-group-title { display: none; }
+    .sst-group { display: flex; align-items: center; justify-content: center; }
+    .sst-icon-grid { width: 100%; }
+}
+.sst-root {
+    --sst-bg: #fff;
+    --sst-panel: #fff;
+    --sst-panel-2: #f7f8f8;
+    --sst-line: rgba(3, 32, 27, .18);
+    --sst-gold: var(--color_main, #03201b);
+    --sst-ink: var(--color_text, #000);
+    --sst-muted: #5f6967;
+    color-scheme: light;
+}
+.sst-frame {
+    border-color: var(--color_border, #ddd);
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+}
+.sst-hero {
+    border-bottom-color: var(--sst-line);
+    background: linear-gradient(90deg, var(--color_main_thin, rgba(3,32,27,.05)), #fff 72%);
+}
+.sst-hero::after { background: var(--sst-gold); }
+.sst-kicker { color: var(--sst-gold); }
+.sst-title { color: #111; font-family: inherit; font-size: clamp(23px, 3vw, 31px); }
+.sst-tools { border-bottom-color: var(--sst-line); background: #fafafa; }
+.sst-attr-filter { border-color: #d5dcda; background: #fff; }
+.sst-rarity-filter { border-color: #cbd3d1; background: #fff; color: #26302e; }
+.sst-rarity-filter:hover, .sst-rarity-filter:focus-visible { border-color: var(--sst-gold); background: var(--color_main_thin, #f4f7f6); }
+.sst-rarity-filter.is-active { border-color: var(--sst-gold); background: var(--sst-gold); color: #fff; }
+.sst-attr-filter:hover, .sst-attr-filter:focus-visible { border-color: var(--sst-gold); background: var(--color_main_thin, #f4f7f6); }
+.sst-attr-filter.is-active { border-color: var(--sst-gold); background: var(--color_main_thin, #eef4f2); box-shadow: 0 0 0 2px rgba(3,32,27,.1); }
+.sst-search { border-color: #bcc7c4; background: #fff; color: #111; }
+.sst-search:focus { border-color: var(--sst-gold); box-shadow: 0 0 0 3px rgba(3,32,27,.1); }
+.sst-column-heads { border-color: var(--sst-line); background: #f4f6f5; }
+.sst-column-tier { border-right-color: var(--sst-line); color: #68716f; }
+.sst-column-head { border-right-color: var(--sst-line); }
+.sst-column-head[data-category="アタッカー"] { color: #b83f49; }
+.sst-column-head[data-category="バッファー"] { color: #247454; }
+.sst-column-head[data-category="サスティナー"] { color: #276c9f; }
+.sst-ssr-fallback h2 { color: var(--sst-gold); }
+.sst-ssr-fallback li { color: #333; }
+.sst-tier-row {
+    --tier-color: #69737e;
+    border-color: #dce1e0;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.sst-tier-row[data-tier="S"] { --tier-color: #a66f00; }
+.sst-tier-row[data-tier="A"] { --tier-color: #bd3f49; }
+.sst-tier-row[data-tier="B"] { --tier-color: #7650a7; }
+.sst-tier-row[data-tier="C"] { --tier-color: #286da3; }
+.sst-tier-row[data-tier="D"] { --tier-color: #2d7952; }
+.sst-tier-row[data-tier="E"] { --tier-color: #69737e; }
+.sst-tier-mark {
+    border-right-color: #dce1e0;
+    background: color-mix(in srgb, var(--tier-color) 9%, #fff);
+    text-shadow: none;
+}
+.sst-group { border-right-color: #e2e6e5; }
+.sst-group-title { background: #f5f6f6; color: #333; }
+.sst-group[data-category="アタッカー"] .sst-group-title { color: #b83f49; }
+.sst-group[data-category="バッファー"] .sst-group-title { color: #247454; }
+.sst-group[data-category="サスティナー"] .sst-group-title { color: #276c9f; }
+.sst-empty { color: #9aa19f; }
+.sst-card:hover, .sst-card:focus-visible { filter: brightness(1.02); }
+.sst-thumb { border-color: #c7cfcd; background: #f1f3f2; box-shadow: 0 3px 8px rgba(0,0,0,.16); }
+.sst-card:hover .sst-thumb, .sst-card:focus-visible .sst-thumb { border-color: var(--sst-gold); box-shadow: 0 8px 18px rgba(0,0,0,.2); }
+.sst-tooltip { border-color: #bcc7c4; background: rgba(255,255,255,.98); color: #111; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.sst-tooltip::after { border-top-color: #bcc7c4; }
+.sst-tooltip small { color: #56615f; }
+.sst-modal { background: rgba(0,0,0,.62); }
+.sst-dialog { border-color: #c9d0ce; background: #fff; color: #111; box-shadow: 0 24px 70px rgba(0,0,0,.3); }
+.sst-close { border-color: #bcc5c3; background: #fff; color: #222; box-shadow: 0 2px 7px rgba(0,0,0,.12); }
+.sst-detail-image { border-color: var(--sst-gold); }
+.sst-chip { border-color: #d6dcda; background: #f5f6f6; color: #333; }
+.sst-chip-tier { border-color: var(--sst-gold); background: var(--color_main_thin, #f0f5f4); color: var(--sst-gold); }
+.sst-chip-rarity[data-rarity="SSR"] {
+    border-color: transparent;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #e94f64, #e6a91e, #39a968, #398fc2, #8b5bc1) border-box;
+    color: #313735;
+}
+.sst-chip-rarity[data-rarity="SR"] { border-color: #ad7a08; background: #fff5c8; color: #755000; }
+.sst-chip-rarity[data-rarity="配布"] { border-color: #aeb7b4; background: #fff; color: #343a38; }
+.sst-affinities span { border-color: #d8dddc; background: #f7f8f8; color: #222; }
+.sst-affinities b { color: var(--sst-gold); }
+.sst-stat { border-color: #dce1e0; background: #f7f8f8; }
+.sst-stat b { color: #5d6966; }
+.sst-box { border-color: #d8dddc; background: #fff; }
+.sst-box-title { border-bottom-color: #d8dddc; background: #f4f6f5; color: var(--sst-gold); }
+.sst-box-body { color: #222; }
+.sst-skill-line + .sst-skill-line { border-top-color: #d8dddc; }
+.sst-skill-name, .sst-feature h4, .sst-art-heading h4 { color: #111; }
+.sst-skill-label { background: #eaf3f8; color: #286b99; }
+.sst-skill-note { color: #8a5c00; }
+.sst-rich { color: #222; }
+.sst-rich .sst-em { color: #956400; text-shadow: none; }
+.sst-effect-base > span, .sst-change-row > span { background: var(--sst-gold); color: #fff; }
+.sst-change-row { border-top-color: #d8dddc; }
+.sst-change-row b { background: #f2f4f3; color: #333; }
+.sst-change-row i { color: #737d7b; }
+.sst-change-row strong { color: #986500; }
+.sst-art { border-left-color: var(--sst-gold); background: #f8f9f9; }
+.sst-art-kind { background: var(--color_main_thin, #edf3f1); color: var(--sst-gold); }
+.sst-art-info > * { background: #ecefee; color: #333; }
+.sst-art-info b, .sst-art-level b { color: #875b00; }
+.sst-art-level { border-color: #d8dddc; background: #fff; color: #222; }
+@media (max-width: 760px) {
+    .sst-tier-mark { border-bottom-color: #dce1e0; }
+    .sst-group { border-bottom-color: #e2e6e5; }
+}
+.sst-root { max-width: none; }
+.sst-frame {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.sst-column-heads {
+    grid-template-columns: 44px minmax(0, 1fr);
+    margin: 12px 0 0;
+}
+.sst-board { padding: 6px 0 0; }
+.sst-tier-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+    margin-bottom: 8px;
+    border-left-width: 3px;
+    border-radius: 6px;
+}
+.sst-tier-mark { min-height: 108px; font-size: 36px; }
+.sst-group { padding: 4px 3px; }
+.sst-icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3px;
+    width: 100%;
+    max-width: 318px;
+    margin: 0 auto;
+}
+.sst-card {
+    flex: 0 1 calc((100% - 6px) / 3);
+    width: calc((100% - 6px) / 3);
+    max-width: 104px;
+}
+.sst-card[data-rarity] .sst-thumb { padding: 2px; border-width: 2px; }
+.sst-card[data-rarity] .sst-face-image { border-radius: 5px; }
+.sst-card[data-rarity="SSR"] .sst-thumb {
+    border-color: transparent;
+    background:
+        linear-gradient(135deg, #df9ba6, #e3c77e 18%, #9bc8a4 36%, #8fc4cf 54%, #9baad0 72%, #c0a0c8 88%, #df9ba6) padding-box,
+        conic-gradient(from 45deg, #c97f8d, #c5a451, #77a982, #69a4b2, #7f91bd, #a783b2, #c97f8d) border-box;
+    box-shadow: 0 3px 8px rgba(65, 77, 88, .22), inset 0 0 0 1px rgba(255,255,255,.72);
+}
+.sst-card[data-rarity="SR"] .sst-thumb {
+    border-color: #a87608;
+    background: linear-gradient(145deg, #fff7c7, #d6a42b);
+    box-shadow: 0 3px 8px rgba(130, 89, 0, .25), inset 0 0 0 1px rgba(255,255,255,.72);
+}
+.sst-card[data-rarity="配布"] .sst-thumb {
+    border-color: #fff;
+    background: linear-gradient(145deg, #fff, #edf0ef);
+    box-shadow: 0 0 0 1px #aeb8b5, 0 3px 8px rgba(35, 45, 42, .2), inset 0 0 0 1px rgba(255,255,255,.9);
+}
+.sst-card[data-rarity="SSR"]:hover .sst-thumb, .sst-card[data-rarity="SSR"]:focus-visible .sst-thumb {
+    border-color: transparent;
+    box-shadow: 0 8px 18px rgba(65, 77, 88, .28);
+}
+.sst-card[data-rarity="SR"]:hover .sst-thumb, .sst-card[data-rarity="SR"]:focus-visible .sst-thumb {
+    border-color: #805900;
+    box-shadow: 0 8px 18px rgba(130, 89, 0, .34);
+}
+.sst-card[data-rarity="配布"]:hover .sst-thumb, .sst-card[data-rarity="配布"]:focus-visible .sst-thumb {
+    border-color: #fff;
+    box-shadow: 0 0 0 1px #7f8b87, 0 8px 18px rgba(35, 45, 42, .28);
+}
+.sst-root .sst-group-title {
+    margin: 0 0 4px !important;
+    padding: 5px 8px !important;
+    line-height: 1.35 !important;
+}
+.sst-root .sst-close {
+    display: grid;
+    place-items: center;
+    padding: 0 !important;
+    font-family: Arial, sans-serif;
+    font-size: 0;
+    line-height: 1 !important;
+}
+.sst-root .sst-close::before {
+    content: "×";
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+@media (max-width: 760px) {
+    .sst-hero { padding: 18px 12px 15px; }
+    .sst-tools { padding: 10px 8px; }
+    .sst-rarity-filter { width: 58px; min-width: 58px; height: 36px; }
+    .sst-board { padding-top: 5px; }
+    .sst-tier-row { grid-template-columns: 1fr; margin-bottom: 8px; }
+    .sst-tier-mark { min-height: 38px; font-size: 28px; }
+    .sst-group { padding: 4px 3px 6px; }
+    .sst-root .sst-group-title { margin-bottom: 3px !important; }
+    .sst-icon-grid { gap: 3px; }
+    .sst-card-speed { min-width: 20px; height: 18px; padding: 0 3px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sst-card, .sst-thumb img, .sst-tooltip { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sst-root" data-image-base="https://playershi.com/wp-content/uploads/" data-api-url="https://playershi.com/wp-json/suikoden-sp/v1/tier" data-flat-assets="1">
+    <div class="sst-frame">
+        <header class="sst-hero">
+            <p class="sst-kicker">幻想水滸伝 STAR LEAP</p>
+            <h1 class="sst-title">幻想水滸伝SP キャラクターTier表</h1>
+            <p class="sst-lead">SSR・SR・配布キャラクターをアタッカー・バッファー・サスティナーの3部門で比較します。アイコンを選択すると能力、個性、技の詳細を確認できます。</p>
+        </header>
+        <div class="sst-tools">
+            <input class="sst-search" type="search" placeholder="キャラ名・タグ・技名で検索" aria-label="Tier表を検索">
+            <div class="sst-rarity-filters" aria-label="レアリティフィルター"></div>
+            <div class="sst-attribute-filters" aria-label="攻撃属性フィルター"></div>
+            <span class="sst-count"></span>
+        </div>
+        <div class="sst-column-heads" aria-hidden="true">
+            <div class="sst-column-tier">Tier</div>
+            <div class="sst-column-groups">
+                <div class="sst-column-head" data-category="アタッカー">アタッカー</div>
+                <div class="sst-column-head" data-category="バッファー">バッファー</div>
+                <div class="sst-column-head" data-category="サスティナー">サスティナー</div>
+            </div>
+        </div>
+        <main class="sst-board"><div class="sst-empty">Tier表データを読み込んでいます。</div></main>
+    </div>
+    <div class="sst-modal" aria-hidden="true">
+        <div class="sst-dialog" role="dialog" aria-modal="true" aria-labelledby="sst-modal-title">
+            <button type="button" class="sst-close" aria-label="閉じる">&times;</button>
+            <div class="sst-detail"></div>
+        </div>
+    </div>
+    <script type="application/json" class="sst-payload"></script>
+</div>
+
+<script>
+(function() {
+    function esc(value) {
+        return String(value == null ? "" : value)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    function lines(value) { return esc(value || "").replace(/\n/g, "<br>"); }
+    function rich(value) {
+        return lines(value)
+            .replace(/&lt;strong&gt;/gi, '<strong class="sst-em">')
+            .replace(/&lt;\/strong&gt;/gi, "</strong>");
+    }
+    function plain(value) { return String(value || "").replace(/<[^>]+>/g, ""); }
+    async function start(root) {
+        if (root.dataset.ready === "1") return;
+        root.dataset.ready = "1";
+        var payloadNode = root.querySelector(".sst-payload");
+        var board = root.querySelector(".sst-board");
+        var data;
+        try {
+            if (payloadNode && payloadNode.textContent.trim()) {
+                data = JSON.parse(payloadNode.textContent);
+            } else {
+                var response = await fetch(root.dataset.apiUrl, { mode: "cors", credentials: "omit" });
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                data = await response.json();
+            }
+        } catch (e) {
+            board.innerHTML = '<div class="sst-empty">Tier表データを読み込めませんでした。</div>';
+            return;
+        }
+        var search = root.querySelector(".sst-search");
+        var rarityFilterBox = root.querySelector(".sst-rarity-filters");
+        var filterBox = root.querySelector(".sst-attribute-filters");
+        var count = root.querySelector(".sst-count");
+        var modal = root.querySelector(".sst-modal");
+        var modalBody = root.querySelector(".sst-detail");
+        var closeButton = root.querySelector(".sst-close");
+        var byId = {};
+        var activeRarity = "";
+        var activeAttribute = "";
+        (data.items || []).forEach(function(item) { byId[String(item.id)] = item; });
+
+        function assetUrl(value) {
+            var image = String(value || "");
+            if (/^(?:https?:)?\/\//.test(image) || image.indexOf("data:") === 0) return image;
+            if (root.dataset.flatAssets === "1") image = image.replace(/\\/g, "/").split("/").pop();
+            return String(root.dataset.imageBase || "") + image.replace(/^\/+/, "");
+        }
+        function imageUrl(item) { return assetUrl(item.image); }
+        function attributeIcon(name, className) {
+            var path = (data.attribute_icons || {})[name];
+            if (!path) return '<span>' + esc(name) + '</span>';
+            return '<img class="' + esc(className || "sst-inline-attribute") + '" src="' + esc(assetUrl(path)) + '" alt="' + esc(name + "属性") + '" title="' + esc(name + "属性") + '">';
+        }
+        function attributeIcons(names, className) {
+            return (names || []).map(function(name) { return attributeIcon(name, className); }).join("");
+        }
+        function attributeText(value) {
+            var text = String(value || "");
+            var rx = /(^|[\s(/｜:])([火水雷土風闘剣智闇無])(?=$|[\s)/｜:+-])/g;
+            var html = "";
+            var last = 0;
+            var match;
+            while ((match = rx.exec(text))) {
+                html += esc(text.slice(last, match.index) + match[1]) + attributeIcon(match[2], "sst-inline-attribute");
+                last = match.index + match[0].length;
+            }
+            return html + esc(text.slice(last));
+        }
+        function card(item) {
+            var attributes = (item.attack_attributes || []).join(" / ") || "なし";
+            var rarity = item.rarity_label || item.rarity || "";
+            var speed = item.stats && item.stats.speed != null ? item.stats.speed : "-";
+            return '<button type="button" class="sst-card" data-id="' + esc(item.id) + '" data-rarity="' + esc(rarity) + '" aria-label="' + esc(item.name + "（" + rarity + "）の詳細") + '">' +
+                '<span class="sst-thumb"><img class="sst-face-image" src="' + esc(imageUrl(item)) + '" alt="' + esc(item.name) + '" loading="lazy" decoding="async">' +
+                '<span class="sst-card-attributes">' + attributeIcons(item.attack_attributes, "sst-card-attribute") + '</span>' +
+                '<span class="sst-card-speed" title="速 ' + esc(speed) + '" aria-label="速 ' + esc(speed) + '">' + esc(speed) + '</span></span>' +
+                '<span class="sst-tooltip"><b>' + esc(item.name) + '</b><small>' + esc(rarity) + ' / 攻撃可能属性：' + esc(attributes) + '</small>' +
+                '<span class="sst-tooltip-attributes">' + attributeIcons(item.attack_attributes, "sst-inline-attribute") + '</span></span></button>';
+        }
+        function render() {
+            var query = String(search.value || "").trim().toLowerCase();
+            var isFiltering = Boolean(query || activeRarity || activeAttribute);
+            var visible = 0;
+            var html = "";
+            (data.tiers || []).forEach(function(tier) {
+                var groups = "";
+                var tierCount = 0;
+                (data.categories || []).forEach(function(category) {
+                    var items = (data.items || []).filter(function(item) {
+                        if (item.tier !== tier || item.category !== category) return false;
+                        if (activeRarity && (item.rarity_label || item.rarity) !== activeRarity) return false;
+                        if (activeAttribute && (item.attack_attributes || []).indexOf(activeAttribute) === -1) return false;
+                        if (!query) return true;
+                        return String(item.search_text || "").toLowerCase().indexOf(query) !== -1;
+                    });
+                    tierCount += items.length;
+                    groups += '<section class="sst-group" data-category="' + esc(category) + '">' +
+                        '<h3 class="sst-group-title"><span class="sst-tier-echo">' + esc(tier) + '</span>' + esc(category) + '</h3>' +
+                        '<div class="sst-icon-grid">' + (items.length ? items.map(card).join("") : '<div class="sst-empty">該当なし</div>') + '</div></section>';
+                });
+                visible += tierCount;
+                if (tierCount || !isFiltering) {
+                    html += '<section class="sst-tier-row" data-tier="' + esc(tier) + '"><div class="sst-tier-mark">' + esc(tier) + '</div><div class="sst-groups">' + groups + '</div></section>';
+                }
+            });
+            board.innerHTML = html || '<div class="sst-empty">該当するキャラクターはいません。</div>';
+            count.textContent = visible + " / " + (data.items || []).length + "体";
+            board.querySelectorAll(".sst-card").forEach(function(button) {
+                button.addEventListener("click", function() { openModal(byId[button.dataset.id]); });
+            });
+        }
+        function renderRarityFilters() {
+            rarityFilterBox.innerHTML = (data.rarities || []).map(function(rarity) {
+                return '<button type="button" class="sst-rarity-filter' + (rarity === activeRarity ? ' is-active' : '') + '" data-rarity="' + esc(rarity) + '" aria-pressed="' + (rarity === activeRarity ? "true" : "false") + '">' + esc(rarity) + '</button>';
+            }).join("");
+            rarityFilterBox.querySelectorAll(".sst-rarity-filter").forEach(function(button) {
+                button.addEventListener("click", function() {
+                    activeRarity = activeRarity === button.dataset.rarity ? "" : button.dataset.rarity;
+                    renderRarityFilters();
+                    render();
+                });
+            });
+        }
+        function renderAttributeFilters() {
+            var present = {};
+            (data.items || []).forEach(function(item) {
+                (item.attack_attributes || []).forEach(function(name) { present[name] = true; });
+            });
+            filterBox.innerHTML = Object.keys(data.attribute_icons || {}).filter(function(name) { return present[name]; }).map(function(name) {
+                return '<button type="button" class="sst-attr-filter' + (name === activeAttribute ? ' is-active' : '') + '" data-attribute="' + esc(name) + '" aria-label="' + esc(name + "属性で絞り込む") + '" aria-pressed="' + (name === activeAttribute ? "true" : "false") + '">' + attributeIcon(name, "") + '</button>';
+            }).join("");
+            filterBox.querySelectorAll(".sst-attr-filter").forEach(function(button) {
+                button.addEventListener("click", function() {
+                    activeAttribute = activeAttribute === button.dataset.attribute ? "" : button.dataset.attribute;
+                    renderAttributeFilters();
+                    render();
+                });
+            });
+        }
+        function stat(label, value) {
+            return '<div class="sst-stat"><b>' + esc(label) + '</b><span>' + esc(value || "-") + '</span></div>';
+        }
+        function box(title, body, extraClass) {
+            if (!body) return "";
+            return '<section class="sst-box ' + esc(extraClass || "") + '"><div class="sst-box-title">' + esc(title) + '</div><div class="sst-box-body">' + body + '</div></section>';
+        }
+        function skill(name, text, label, note) {
+            if (!name && !text) return "";
+            return '<div class="sst-skill-line"><div class="sst-skill-name">' + esc(name || label) +
+                (label && name ? '<span class="sst-skill-label">' + esc(label) + '</span>' : "") + '</div>' +
+                (text ? '<div class="sst-rich">' + rich(text) + '</div>' : "") +
+                (note ? '<div class="sst-skill-note">' + esc(note) + '</div>' : "") + '</div>';
+        }
+        function changedValues(before, after) {
+            var rx = /\d+(?:\.\d+)?(?:%|段階|回|体|ターン|個|枚|倍)?/g;
+            var a = plain(before).match(rx) || [];
+            var b = plain(after).match(rx) || [];
+            var values = [];
+            for (var i = 0; i < Math.min(a.length, b.length); i++) {
+                if (a[i] !== b[i]) values.push(a[i] + " → " + b[i]);
+            }
+            var em = /<strong>(.*?)<\/strong>/gi;
+            var ae = [], be = [], match;
+            while ((match = em.exec(String(before || "")))) ae.push(plain(match[1]));
+            em.lastIndex = 0;
+            while ((match = em.exec(String(after || "")))) be.push(plain(match[1]));
+            for (var j = 0; j < Math.min(ae.length, be.length); j++) {
+                if (ae[j] !== be[j] && !/\d/.test(ae[j] + be[j])) values.push(ae[j] + " → " + be[j]);
+            }
+            return values.filter(function(value, index) { return values.indexOf(value) === index; });
+        }
+        function abilityComparison(ability) {
+            var lv1 = ability.lv1 || {}, lv2 = ability.lv2 || {};
+            if (!lv1.name && !lv1.description && !lv2.name && !lv2.description) return "";
+            var changes = changedValues(lv1.description, lv2.description);
+            if (lv1.name && lv2.name && lv1.name !== lv2.name) changes.unshift(lv1.name + " → " + lv2.name);
+            var changeHtml = changes.length ? '<div class="sst-change-row"><span>Lv2・1凸</span>' + changes.map(function(value) {
+                var pair = value.split(" → ");
+                return '<b>' + esc(pair[0]) + '<i>→</i><strong>' + esc(pair.slice(1).join(" → ")) + '</strong></b>';
+            }).join("") + '</div>' : "";
+            return '<div class="sst-feature"><h4>' + esc(lv1.name || lv2.name || "個性") + '</h4>' +
+                '<div class="sst-effect-base"><span>Lv1</span><div class="sst-rich">' + rich(lv1.description || lv2.description) + '</div></div>' + changeHtml + '</div>';
+        }
+        function artBlock(art) {
+            var levels = (art.levels || []).map(function(level) {
+                return '<div class="sst-art-level"><b>LV' + esc(level.level) + '</b><span>' + attributeText(level.summary || "-") + '</span></div>';
+            }).join("");
+            var meta = (art.metadata || []).map(function(value) { return '<span>' + esc(value) + '</span>'; }).join("");
+            return '<article class="sst-art"><div class="sst-art-kind">' + esc(art.kind) + '</div>' +
+                '<div class="sst-art-heading"><h4>' + esc(art.name) + '</h4>' +
+                (art.description ? '<p class="sst-rich">' + rich(art.description) + '</p>' : "") + '</div>' +
+                '<div class="sst-art-info"><b>' + esc(art.target || "対象なし") + '</b>' + meta + '</div>' +
+                '<div class="sst-art-levels">' + levels + '</div></article>';
+        }
+        function openModal(item) {
+            if (!item) return;
+            var s = item.stats || {};
+            var stats = stat("HP", s.hp) + stat("物攻", s.physical_attack) + stat("物防", s.physical_defense) +
+                stat("魔攻", s.magic_attack) + stat("魔防", s.magic_defense) + stat("速", s.speed) + stat("命中", s.hit) + stat("回避", s.dodge);
+            var traits = abilityComparison(item.ability || {});
+            var guide = (item.guidance || []).map(function(value, index) {
+                return skill(value.name, value.description, "指南" + (index + 1), value.note);
+            }).join("");
+            var lb = item.limit_break_skill || {};
+            guide += skill(lb.name, lb.description, "2凸スキル", lb.note);
+            var arts = (item.arts || []).map(artBlock).join("");
+            modalBody.innerHTML = '<div class="sst-detail-head"><img class="sst-detail-image" src="' + esc(imageUrl(item)) + '" alt="' + esc(item.name) + '">' +
+                '<div><h2 class="sst-detail-name" id="sst-modal-title">' + esc(item.name) + '</h2><div class="sst-chips">' +
+                '<span class="sst-chip sst-chip-tier">Tier ' + esc(item.tier) + '</span><span class="sst-chip sst-chip-rarity" data-rarity="' + esc(item.rarity_label || item.rarity) + '">' + esc(item.rarity_label || item.rarity) + '</span><span class="sst-chip">' + esc(item.category) + '</span>' +
+                '<span class="sst-chip">' + esc(item.role || "役割なし") + '</span><span class="sst-chip">' + esc(item.tags || "タグなし") + '</span>' +
+                '<span class="sst-chip sst-attack-chip">攻撃属性 <span class="sst-attribute-list">' + (attributeIcons(item.attack_attributes, "sst-inline-attribute") || "なし") + '</span></span></div>' +
+                '<div class="sst-affinities"><span><b>RESIST</b>' + attributeText(item.resist || "-") + '</span><span><b>WEAK</b>' + attributeText(item.weak || "-") + '</span></div></div></div>' +
+                '<div class="sst-stats">' + stats + '</div><div class="sst-detail-grid">' +
+                box("個性", traits) + box("リーダースキル", skill(item.leader.name, item.leader.description, "")) +
+                box("指南・凸スキル", guide) + box("通常攻撃・技・奥義・支援技", '<div class="sst-art-grid">' + arts + '</div>', "sst-arts") + '</div>';
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+            closeButton.focus();
+        }
+        function closeModal() {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+        }
+        search.addEventListener("input", render);
+        closeButton.addEventListener("click", closeModal);
+        modal.addEventListener("click", function(event) { if (event.target === modal) closeModal(); });
+        document.addEventListener("keydown", function(event) { if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal(); });
+        renderRarityFilters();
+        renderAttributeFilters();
+        render();
+    }
+    document.querySelectorAll(".sst-root").forEach(start);
+})();
+</script>
+</body>
+</html>
